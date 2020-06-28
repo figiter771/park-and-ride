@@ -22,7 +22,12 @@ export class AppComponent implements OnInit {
     src: string,
     type: string,
   }[];
+  objects$:{id: number}[];
   ngOnInit(){
+    this.videos$=[];
+    this.objects$=[];
+    this.objects$.push({id: 1});
+    this.objects$.push({id: 4});
     this.map = new Map({
       target: 'hotel_map',
       layers: [
@@ -40,8 +45,11 @@ export class AppComponent implements OnInit {
   }
 
   createVideos():void{
-    this.videos$[0].src='../assets/videos/5_valmieras_puikas.mp4';
-    this.videos$[0].type='video/mp4';
+    // this.videos$.push({src: '/assets/video/5_valmieras_puikas.mp4', type: 'video/mp4'});
+    this.objects$.forEach(element => {
+      console.log('/assets/video/' + element.id + '.mp4');
+      this.videos$.push({src: '/assets/video/' + element.id + '.mp4', type: 'video/mp4'});
+    });
   }
   
 }
